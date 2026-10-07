@@ -21,7 +21,6 @@ const HomePage = (props) => {
     });
   }, []);
 
-
   return (
     <PageTemplate
       title='Discover Movies'
