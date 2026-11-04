@@ -15,6 +15,7 @@ import { Link } from "react-router";
 import Avatar from '@mui/material/Avatar';
 import { MoviesContext } from '../../contexts/movieContext';
 import { useContext } from 'react';
+import AddToPlaylistIcon from "../cardIcons/addToPlaylist";
 
 export default function MovieCard({ movie, action }) {
 
