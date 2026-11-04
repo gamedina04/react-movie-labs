@@ -1,3 +1,4 @@
+import { stepLabelClasses } from "@mui/material/StepLabel";
 import React, { useState } from "react";
 
 export const MoviesContext = React.createContext(null);
@@ -29,6 +30,22 @@ const MoviesContextProvider = (props) => {
     ))
   };
 
+  const [playlist, setPlaylist] = useState([])
+
+  const addToPlaylist = (movie) => {
+    let newPlaylist = []
+    console.log(newPlaylist)
+
+    if (!playlist.includes(movie.id)) {
+      newPlaylist = [...playlist, movie.id];
+    }
+    else {
+      newPlaylist = [...playlist];
+    }
+    setPlaylist(newPlaylist)
+    console.log(newPlaylist)
+  }
+
   return (
     <MoviesContext.Provider
       value={{
@@ -36,6 +53,7 @@ const MoviesContextProvider = (props) => {
         addToFavorites,
         removeFromFavorites,
         addReview,
+        addToPlaylist,
       }}
     >
       {props.children}
