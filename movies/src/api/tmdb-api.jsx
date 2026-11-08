@@ -91,9 +91,105 @@ export const getMovieReviews = ({ queryKey }) => {
     });
 };
 
+export const getMovieRecommendations = ({ queryKey, pageParam = 1 }) => {
+  const [, idPart] = queryKey;
+  const { id } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${import.meta.env.VITE_TMDB_KEY}&page=${pageParam}`
+  ).then((response) => {
+    if (!response.ok) {
+      return response.json().then((error) => {
+        throw new Error(error.status_message || "Something went wrong");
+      });
+    }
+    return response.json();
+  })
+    .catch((error) => {
+      throw error
+    });
+};
+
+export const getMovieCredits = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      return response.json().then((error) => {
+        throw new Error(error.status_message || "Something went wrong");
+      });
+    }
+    return response.json();
+  })
+    .catch((error) => {
+      throw error
+    });
+};
+
+export const getPersonDetails = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/person/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      return response.json().then((error) => {
+        throw new Error(error.status_message || "Something went wrong");
+      });
+    }
+    return response.json();
+  })
+    .catch((error) => {
+      throw error
+    });
+};
+
+export const getPersonMovieCredits = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      return response.json().then((error) => {
+        throw new Error(error.status_message || "Something went wrong");
+      });
+    }
+    return response.json();
+  })
+    .catch((error) => {
+      throw error
+    });
+};
+
 export const getUpcomingMovies = () => {
   return fetch(
     `https://api.themoviedb.org/3/movie/upcoming?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+  )
+    .then((res) => res.json())
+    .then((json) => json.results);
+};
+
+export const getNowPlayingMovies = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/now_playing?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+  )
+    .then((res) => res.json())
+    .then((json) => json.results);
+};
+
+export const getPopularMovies = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+  )
+    .then((res) => res.json())
+    .then((json) => json.results);
+};
+
+export const getTopRatedMovies = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
   )
     .then((res) => res.json())
     .then((json) => json.results);
