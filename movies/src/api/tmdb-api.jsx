@@ -91,11 +91,11 @@ export const getMovieReviews = ({ queryKey }) => {
     });
 };
 
-export const getMovieRecommendations = ({ queryKey }) => {
+export const getMovieRecommendations = ({ queryKey, pageParam = 1 }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;
   return fetch(
-    `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${import.meta.env.VITE_TMDB_KEY}&page=${pageParam}`
   ).then((response) => {
     if (!response.ok) {
       return response.json().then((error) => {
