@@ -79,7 +79,15 @@ const MovieRecommendations = ({ movie }) => {
           overflowX: "auto",
           overflowY: "hidden",
           py: 1,
-          "&::-webkit-scrollbar": { height: 8 },
+          scrollbarWidth: "thin",
+          scrollbarColor: "#555 #ddd",
+          "&::-webkit-scrollbar": { height: 12 },
+          "&::-webkit-scrollbar-track": { background: "#eee", borderRadius: 6 },
+          "&::-webkit-scrollbar-thumb": {
+            background: "#888",
+            borderRadius: 6,
+            "&:hover": { background: "#666" },
+          },
         }}
       >
         <Box
