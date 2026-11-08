@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import Spinner from '../spinner'
 import Button from "@mui/material/Button";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const MAX_CAST = 12;
 
@@ -56,16 +57,18 @@ const MovieCredits = ({ movie }) => {
               textAlign: "center",
             }}
           >
-            <Avatar
-              src={
-                c.profile_path
-                  ? `https://image.tmdb.org/t/p/w185${c.profile_path}`
-                  : undefined
-              }
-              alt={c.name}
-              sx={{ width: 80, height: 80, mb: 1 }}
-            />
-            <Typography variant="subtitle2">{c.name}</Typography>
+            <Link to={`/actors/${c.id}`} style={{ textDecoration: "none" }}>
+              <Avatar
+                src={
+                  c.profile_path
+                    ? `https://image.tmdb.org/t/p/w185${c.profile_path}`
+                    : undefined
+                }
+                alt={c.name}
+                sx={{ width: 80, height: 80, mb: 1 }}
+              />
+              <Typography variant="subtitle2">{c.name}</Typography>
+            </Link>
             <Typography variant="caption" color="text.secondary">
               {c.character}
             </Typography>
